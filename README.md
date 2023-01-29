@@ -1,2 +1,2 @@
 # Omni-SR
-Omni-SR visual results
+CVPR2023 Paper285
