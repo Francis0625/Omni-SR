@@ -1,2 +1,0 @@
-# Omni-SR
-CVPR2023 Paper285
