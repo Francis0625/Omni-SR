@@ -29,6 +29,9 @@ conda env create -f ./environment/omnisr_env.yaml
 
 ## Results
 
+![performance](https://user-images.githubusercontent.com/18433587/227410356-6b69906b-416d-4d07-8127-41b08ab79c7a.PNG)
+
+
 ## To cite our paper
 
 ## Related Projects
