@@ -7,6 +7,10 @@ Our paper can be downloaded from [[Arxiv]]().
 
 Try OmniSR in Colab [ <a href="https://colab.research.google.com/github/Francis0625/OmniSR/blob/main/demo.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="google colab logo"></a>](https://colab.research.google.com/github/Francis0625/OmniSR/blob/main/demo.ipynb)
 
+## Attention
+
+***We are archiving our code and awaiting approval for code public access!***
+
 ## Installation
 **Clone this repo:**
 ```bash
