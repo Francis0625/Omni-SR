@@ -1,11 +1,37 @@
-# Omni-SR
-## Introduction
-This project is the implementation of ``Omni Aggregation Networks for Lightweight Image Super-Resolution'' in PyTorch, which is accepted by CVPR 2023.
-
+# Omni Aggregation Networks for Lightweight Image Super-Resolution (OmniSR)
+## Accepted by CVPR2023
 
 **The official repository with Pytorch**
 
-# Code and pretrained models will come soon!
+Our paper can be downloaded from [[Arxiv]]().
+
+Try OmniSR in Colab [ <a href="https://colab.research.google.com/github/Francis0625/OmniSR/blob/main/demo.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="google colab logo"></a>](https://colab.research.google.com/github/Francis0625/OmniSR/blob/main/demo.ipynb)
+
+## Installation
+**Clone this repo:**
+```bash
+git clone https://github.com/Francis0625/OmniSR.git
+cd OmniSR
+```
+**Dependencies:**
+- PyTorch 1.7.0
+- Pillow 8.3.1; Matplotlib 3.3.4; opencv-python 4.5.3; Faiss 1.7.1; tqdm 4.61.2; Ninja 1.10.2
+
+All dependencies for defining the environment are provided in `environment/omnisr_env.yaml`.
+We recommend running this repository using [Anaconda](https://docs.anaconda.com/anaconda/install/) (you may need to modify `omnisr_env.yaml` to install PyTorch that matches your own CUDA version following [https://pytorch.org/](https://pytorch.org/)):
+```bash
+conda env create -f ./environment/omnisr_env.yaml
+```
+
+## Training
+
+## Inference with a pretrained OmniSR model
+
+## Results
+
+## To cite our paper
+
+## Related Projects
 
 ## Citation
 If this work helps your research, please cite the following paper:
