@@ -4,12 +4,7 @@
 **The official repository with Pytorch**
 
 Our paper can be downloaded from [[Arxiv]]().
-
-Try OmniSR in Colab [ <a href="https://colab.research.google.com/github/Francis0625/OmniSR/blob/main/demo.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="google colab logo"></a>](https://colab.research.google.com/github/Francis0625/OmniSR/blob/main/demo.ipynb)
-
-## Attention
-
-***We are archiving our code and awaiting approval for code public access!***
+ 
 
 ## Installation
 **Clone this repo:**
@@ -18,14 +13,40 @@ git clone https://github.com/Francis0625/OmniSR.git
 cd OmniSR
 ```
 **Dependencies:**
-- PyTorch 1.7.0
-- Pillow 8.3.1; Matplotlib 3.3.4; opencv-python 4.5.3; Faiss 1.7.1; tqdm 4.61.2; Ninja 1.10.2
+- PyTorch>1.10
+- OpenCV
+- Matplotlib 3.3.4 
+- opencv-python 
+- pyyaml
+- tqdm
+- numpy
+- torchvision
 
-All dependencies for defining the environment are provided in `environment/omnisr_env.yaml`.
-We recommend running this repository using [Anaconda](https://docs.anaconda.com/anaconda/install/) (you may need to modify `omnisr_env.yaml` to install PyTorch that matches your own CUDA version following [https://pytorch.org/](https://pytorch.org/)):
-```bash
-conda env create -f ./environment/omnisr_env.yaml
+## Preparation
+
+- Download pretrained models, and copy them to ```./train_logs/```:
+
+|  Settings   | CKPT name | CKPT url|
+|  ----  | ----  | --- |
+| DIV2K $\times 2$  | OmniSR_X2_DIV2K.zip | [baidu cloud](https://pan.baidu.com/s/1dJhTlhloaiYn9yImk6pa1Q) (passwd: sjtu)|
+| DF2K $\times 2$  | OmniSR_X2_DF2K.zip | [baidu cloud](https://pan.baidu.com/s/1IK_bzB5gp2tK67zF-VV4Lg) (passwd: sjtu)|
+| DIV2K $\times 3$  | OmniSR_X3_DIV2K.zip | [baidu cloud](https://pan.baidu.com/s/19J5uONEOYWxAbEMWIF9qDA) (passwd: sjtu)|
+| DF2K $\times 3$  | OmniSR_X3_DF2K.zip | [baidu cloud](https://pan.baidu.com/s/1mXL7AOUwyC91UDcEWFCh2Q) (passwd: sjtu)|
+| DIV2K $\times 4$  | OmniSR_X4_DIV2K.zip | [baidu cloud](https://pan.baidu.com/s/1ovxRa4-wOKZLq_nO6hddsg) (passwd: sjtu)|
+| DF2K $\times 4$  | OmniSR_X4_DIV2K.zip | [baidu cloud](https://pan.baidu.com/s/1KwO_shGLeais9Jne_cCINQ) (passwd: sjtu)|
+
+- Download benchmark images, and copy them to ```./benchmark/```: [baidu cloud](https://pan.baidu.com/s/1HsMtfjEzj4cztaF2sbnOMg) (passwd: sjtu)
+
+ 
+## Evaluate Pretrained Models
+### Example: evaluate the model trained with DF2K@X4:
+
+- Step 1, the following cmd will report a performance evaluated with python script, and generated images are placed in ```./SR```
+
 ```
+python -v "OmniSR_X4_DF2K" -s 994 -t tester_Matlab --test_dataset_name "Urban100"
+```
+- Step2, please execute the ```Evaluate_PSNR_SSIM.m``` script in the root directory to obtain the results reported in the paper.
 
 ## Training
 
@@ -35,12 +56,9 @@ conda env create -f ./environment/omnisr_env.yaml
 
 ![performance](https://user-images.githubusercontent.com/18433587/227410356-6b69906b-416d-4d07-8127-41b08ab79c7a.PNG)
 
-
-## To cite our paper
-
 ## Related Projects
 
-## Citation
+## To cite our paper
 If this work helps your research, please cite the following paper:
 
 ```
