@@ -46,7 +46,7 @@ cd OmniSR
 ```
 python -v "OmniSR_X4_DF2K" -s 994 -t tester_Matlab --test_dataset_name "Urban100"
 ```
-- Step2, please execute the ```Evaluate_PSNR_SSIM.m``` script in the root directory to obtain the results reported in the paper.
+- Step2, please execute the ```Evaluate_PSNR_SSIM.m``` script in the root directory to obtain the results reported in the paper. Please modify ```L8: methods = {'OmniSR_X4_DF2K'};`` to match the model name evaluated above.
 
 ## Training
 
