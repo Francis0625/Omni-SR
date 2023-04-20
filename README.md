@@ -35,7 +35,7 @@ cd OmniSR
 | DIV2K $\times 4$  | OmniSR_X4_DIV2K.zip | [baidu cloud](https://pan.baidu.com/s/1KwO_shGLeais9Jne_cCINQ) (passwd: sjtu) , [Google driver](https://drive.google.com/file/d/1VoPUw0SRnCPAU8_R5Ue15bn2gwSBr97g/view?usp=sharing)|
 | DF2K $\times 4$  | OmniSR_X4_DF2K.zip | [baidu cloud](https://pan.baidu.com/s/1ovxRa4-wOKZLq_nO6hddsg) (passwd: sjtu) , [Google driver](https://drive.google.com/file/d/17rJXJHBYt4Su8cMDMh-NOWMBdE6ki5em/view?usp=sharing)|
 
-- Download benchmark images, and copy them to ```./benchmark/```: [baidu cloud](https://pan.baidu.com/s/1HsMtfjEzj4cztaF2sbnOMg) (passwd: sjtu)
+- Download benchmark images, and copy them to ```./benchmark/```: [baidu cloud](https://pan.baidu.com/s/1HsMtfjEzj4cztaF2sbnOMg) (passwd: sjtu) , [Google driver](https://drive.google.com/file/d/1w-brbpprWHyT4tzCe_MoB2tqEcSOc5OW/view?usp=sharing)
  
 ## Evaluate Pretrained Models
 ### Example: evaluate the model trained with DF2K@X4:
