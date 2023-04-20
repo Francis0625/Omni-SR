@@ -151,7 +151,7 @@ cython_debug/
 #  option (not recommended) you can uncomment the following to ignore the entire idea folder.
 #.idea/
 
-train_logs/
+train_logs/*
 test_logs/
 *.zip
 benchmark/HR/
