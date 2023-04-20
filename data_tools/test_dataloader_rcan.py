@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 # -*- coding:utf-8 -*-
 #############################################################
-# File: eval_dataloader_DIV2K.py
+# File: test_dataloader_rcan.py
 # Created Date: Tuesday January 12th 2021
 # Author: Chen Xuanhong
 # Email: chenxuanhongzju@outlook.com
-# Last Modified:  Thursday, 30th June 2022 5:38:40 pm
+# Last Modified:  Thursday, 20th April 2023 9:31:19 am
 # Modified By: Chen Xuanhong
 # Copyright (c) 2021 Shanghai Jiao Tong University
 #############################################################

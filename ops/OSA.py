@@ -1,3 +1,15 @@
+#!/usr/bin/env python3
+# -*- coding:utf-8 -*-
+#############################################################
+# File: OSA.py
+# Created Date: Tuesday April 28th 2022
+# Author: Chen Xuanhong
+# Email: chenxuanhongzju@outlook.com
+# Last Modified:  Thursday, 20th April 2023 9:28:34 am
+# Modified By: Chen Xuanhong
+# Copyright (c) 2020 Shanghai Jiao Tong University
+#############################################################
+
 import  torch
 from    torch import nn, einsum
 

@@ -53,7 +53,7 @@ python -v "OmniSR_X4_DF2K" -s 994 -t tester_Matlab --test_dataset_name "Urban100
 
 ## Visualization
 
-![performance](./vis.png)
+![performance](./doc/imgs/vis.png)
 
 ## Results
 
