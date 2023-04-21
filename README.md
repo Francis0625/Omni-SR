@@ -3,7 +3,7 @@
 
 **The official repository with Pytorch**
 
-Our paper can be downloaded from [[Arxiv]]().
+Our paper can be downloaded from [[Arxiv]](https://arxiv.org/pdf/2304.10244.pdf).
  
 
 ## Installation
