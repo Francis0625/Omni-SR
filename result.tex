@@ -1,0 +1,107 @@
+\begin{table*}[t]
+  \centering
+  \footnotesize
+  \setlength{\tabcolsep}{2.3mm}
+
+    \caption{
+    Quantitative comparison (PSNR/SSIM) for \textbf{lightweight image SR} with state-of-the-art methods on benchmark datasets. The best and second-best results are marked in \textcolor{red}{red} and \textcolor{blue}{blue} colors, respectively. ``$\dagger$” indicates that model is trained on DF2K.}
+  \vspace{-3mm}
+  \label{tab:psnr-ssim}
+  \renewcommand{\arraystretch}{0.82}
+	\begin{tabular}{l|c|c|c|c|c|c|c|c}
+		\toprule[1pt]
+		\multirow{2}{*}{Method} & \multirow{2}{*}{Years} & \multirow{2}{*}{Scale}  & Params & Set5 & Set14 & BSD100 & Urban100 & Manga109 \\
+		&  & & (K) & PSNR / SSIM & PSNR / SSIM & PSNR / SSIM & PSNR / SSIM & PSNR / SSIM \\
+    \hline
+	VDSR~\cite{vdsr} &   CVPR16 & \multirow{13}{*}{$\times 2$} & 666 & 36.66 / 0.9542 & 33.05 / 0.9127 & 31.90 / 0.8960 & 30.76 / 0.9140 & 37.22 / 0.9750  \\
+	
+	MemNet~\cite{memnet} &  ICCV17 &  & 678 & 	37.78 / 0.9597 & 33.28 / 0.9142 & 32.08 / 0.8978 & 31.31 / 0.9195 & 37.72 / 0.9740\\
+	
+	SRMDNF~\cite{srmdnf} &  
+	CVPR18 & & 1511 & 37.79 / 0.960 & 33.32 / 0.915 & 32.05 / 0.8985 & 31.33 / 0.9204 & 38.07 / 0.9761\\
+	
+	CARN~\cite{CARN} &  ECCV18&  & 1,592 & 37.76 / 0.9590 & 33.52 / 0.9166 & 32.09 / 0.8978 & 31.92 / 0.9256  & 38.36 / 0.9765 \\
+		
+    IMDN~\cite{imdn} &  MM19  && 694 & 38.00 / 0.9605 & 33.63 / 0.9177 & 32.19 / 0.8996 & 32.17 / 0.9283 & 38.88 / 0.9774 \\
+    
+    RFDN-L~\cite{liu2020residual}  &ECCV20 & & 626 & 38.08 / 0.9606 &  33.67 / 0.9190 & 32.18 / 0.8996 & 32.24 / 0.9290  & 38.95 / 0.9773 \\
+
+    MAFFSRN~\cite{muqeet2020multi}  &ECCV20 && 402 & 37.97 / 0.9603 & 33.49 / 0.9170 & 32.14 / 0.8994 & 31.96 / 0.9268 &  - / -\\
+    
+    LatticeNet~\cite{latticenet}  &ECCV20  & & 756 & 38.15 / 0.9610 & 33.78 / 0.9193 & 32.25 / 0.9005 & 32.43 / 0.9302 & - / -\\
+		
+	RLFN~\cite{RLFN} & CVPRW22&   & 527 & 38.07 / 0.9607 & 33.72 / 0.9187 & 32.22 / 0.9000 & 32.33 / 0.9299 & - / -  \\
+	
+	SwinIR~\cite{swinir} &  ICCVW21& & 878 & 		 38.14 / 0.9611 & 33.86 / 0.9206 & 32.31 / 0.9012 & 32.76 / 0.9340 & 39.12 / 0.9783 \\
+    
+
+	\rowcolor{green!08}
+	\textbf{Omni-SR} & Ours &  & 772 &  \textcolor{blue}{38.22} / \textcolor{blue}{0.9613} & \textcolor{blue}{33.98} / \textcolor{blue}{0.9210} & 
+ \textcolor{blue}{32.36} / \textcolor{blue}{0.9020} & \textcolor{blue}{33.05} / \textcolor{blue}{0.9363}  & \textcolor{blue}{39.28} / \textcolor{blue}{0.9784} \\
+	\rowcolor{green!08}
+	\textbf{Omni-SR${\small \dagger}$ } & Ours & & 772  &  \textcolor{red}{\textbf{38.29}} / \textcolor{red}{\textbf{0.9617}} & \textcolor{red}{\textbf{34.27}} / \textcolor{red}{\textbf{0.9238}} & \textcolor{red}{\textbf{32.41}} / \textcolor{red}{\textbf{0.9026}} & \textcolor{red}{\textbf{33.30}} / \textcolor{red}{\textbf{0.9386}}  & \textcolor{red}{\textbf{39.53}} / \textcolor{red}{\textbf{0.9792}} \\
+		
+	\midrule
+	VDSR~\cite{vdsr}  & CVPR16& \multirow{13}{*}{$\times 3$} &   666 & 33.66 / 0.9213 & 29.77 / 0.8314 & 28.82 / 0.7976 & 27.14 / 0.8279 & 32.01 / 0.9340 \\
+	
+	MemNet~\cite{memnet} & ICCV17 &   & 678 & 34.09 / 0.9248 & 30.00 / 0.8350 & 28.96 / 0.8001 & 27.56 / 0.8376 & 32.51 / 0.9369\\
+	
+	EDSR~\cite{edsr} &CVPRW17&    & 1,555 & 34.37 / 0.9270 & 30.28 / 0.8417 & 29.09 / 0.8052 & 28.15 / 0.8527 & 33.45 / 0.9439 \\
+	
+	SRMDNF~\cite{srmdnf} & CVPR18 &   & 1,528 & 34.12 / 0.9254 & 30.04 / 0.8382 & 28.97 / 0.8025 & 27.57 / 0.8398 & 33.00 / 0.9403 \\
+	
+	CARN~\cite{CARN} & ECCV18&    & 1,592 & 34.29 / 0.9255 & 30.29 / 0.8407 & 29.06 / 0.8034 & 28.06 / 0.8493 & 33.50 / 0.9440 \\
+		
+    IMDN~\cite{imdn} & MM19 &   & 703 & 34.36 / 0.9270 & 30.32 / 0.8417 & 29.09 / 0.8046 & 28.17 / 0.8519 & 33.61 / 0.9445 \\
+
+    RFDN-L~\cite{liu2020residual} & ECCV20&   & 633 & 34.47 / 0.9280 &  30.35 / 0.8421 & 29.11 / 0.8053 & 28.32 / 0.8547  & 33.78 / 0.9458 \\
+
+    MAFFSRN~\cite{muqeet2020multi} &ECCV20 &  & 807 & 34.45 / 0.9277 & 30.40 / 0.8432 & 29.13 / 0.8061 & 28.26 / 0.8552 &  - / -\\
+    
+    LatticeNet~\cite{latticenet} &ECCV20 &   & 765 & 34.53 / 0.9281 & 30.39 / 0.8424 & 29.15 / 0.8059 & 28.33 / 0.8538 & - / -\\
+		
+	ESRT~\cite{ESRT} & CVPRW22 &   & 770 & 34.42 / 0.9268 & 30.43 / 0.8433 & 29.15 / 0.8063 & 28.46 / 0.8574 & 33.95 / 0.9455 \\
+	
+	SwinIR~\cite{swinir} & ICCVW21 &  & 886  & 		34.62 / 0.9289 & \blue{30.54} / \blue{0.8463}& 29.20 / 0.8082& 28.66 / 0.8624& 33.98 / 0.9478\\
+		
+	\rowcolor{green!08}
+	\textbf{Omni-SR }  & Ours &   & 780 &  \blue{34.70} / \blue{0.9294} & \blue{30.57} / \blue{0.8469} & \blue{29.28} / \blue{0.8094} & \blue{28.84} / \blue{0.8656} & \blue{34.22} / \blue{0.9487} \\
+	
+	
+	\rowcolor{green!08}
+	\textbf{Omni-SR${\small \dagger}$ } & Ours & & 780 &  \textcolor{red}{\textbf{34.77}} / \textcolor{red}{\textbf{0.9304}} & \textcolor{red}{\textbf{30.70}} / \textcolor{red}{\textbf{0.8489}}  &  \textcolor{red}{\textbf{29.33}} / \textcolor{red}{\textbf{0.8111}} & \textcolor{red}{\textbf{29.12}} / \textcolor{red}{\textbf{0.8712}}  & \textcolor{red}{\textbf{34.64}} / \textcolor{red}{\textbf{0.9507}} \\
+		
+	\midrule
+		
+	VDSR~\cite{vdsr} & CVPR16  & \multirow{13}{*}{$\times 4$} & 666 & 31.35 / 0.8838 & 28.01 / 0.7674 & 27.29 / 0.7251 & 25.18 / 0.7524 & 28.83 / 0.8870 \\
+	
+	MemNet~\cite{memnet} & ICCV17 &    & 678 & 31.74 / 0.8893 & 28.26 / 0.7723 & 27.40 / 0.7281 & 25.50 / 0.7630 & 29.42 / 0.8942 \\
+	
+	EDSR~\cite{edsr} & CVPRW17 &    & 1,518 & 32.09 / 0.8938 &  28.58 / 0.7813 & 27.57 / 0.7357 & 26.04 / 0.7849 & 30.35 / 0.9067 \\
+	
+	SRMDNF~\cite{srmdnf} &CVPR18 &   & 1,552 & 31.96 / 0.8925 & 28.35 / 0.7787 & 27.49 / 0.7337 & 25.68 / 0.7731 & 30.09 / 0.9024\\
+		
+    CARN~\cite{CARN} & ECCV18 &   & 1,592 & 32.13 / 0.8937 & 28.60 / 0.7806 &  27.58 / 0.7349 & 26.07 / 0.7837  & 30.47 / 0.9084 \\
+		
+    IMDN~\cite{imdn} & MM19 &   & 715 & 32.21 / 0.8948 & 28.58 / 0.7811 & 27.56 / 0.7353 & 26.04 / 0.7838 & 30.45 / 0.9075 \\
+
+    RFDN-L~\cite{liu2020residual} & ECCV20 &   & 643 & 32.28 / 0.8957 & 28.61 / 0.7818 & 27.58 / 0.7363 & 26.20 / 0.7883 & 30.61 / 0.9096 \\
+
+    MAFFSRN~\cite{muqeet2020multi} &ECCV20 &  & 830 & 32.20 / 0.8953 & 26.62 / 0.7822 & 27.59 / 0.7370 & 26.16 / 0.7887 & - / - \\
+    
+    LatticeNet~\cite{latticenet} & ECCV20 &   & 777 & 32.30 / 0.8962 & 28.68 / 0.7830 & 27.62 / 0.7367 & 26.25 / 0.7873 & - / -\\
+	
+	RLFN~\cite{RLFN} &  CVPRW22&   & 543 & 32.24 / 0.8952 & 28.62 / 0.7813 & 27.60 / 0.7364 & 26.17 / 0.7877 & - / -  \\
+		
+	ESRT~\cite{ESRT} & CVPRW22 &   & 751 & 32.19 / 0.8947 & 28.69 / 0.7833 & 27.69 / 0.7379 & 26.39 / 0.7962 & 30.75 / 0.9100 \\
+	
+	SwinIR~\cite{swinir} & ICCVW21 &   &  897 & 32.44 / 0.8976 & 28.77 / 0.7858& 27.69 / 0.7406 & 26.47 / 0.7980 & 30.92 / 0.9151\\
+	
+	   \rowcolor{green!08}
+	\textbf{Omni-SR} & Ours &  & 792 & \blue{32.49} / \blue{0.8988} & \blue{28.78} / \blue{0.7859}  & \blue{27.71} / \blue{0.7415}  & \blue{26.64} / \blue{0.8018} &  \blue{31.02} / \blue{0.9151} \\
+\rowcolor{green!08}
+	\textbf{Omni-SR${\small \dagger}$ } & Ours &   & 792 &  \textcolor{red}{\textbf{32.57}} / \textcolor{red}{\textbf{0.8993}} &  \textcolor{red}{\textbf{28.95}} / \textcolor{red}{\textbf{0.7898}}  & \textcolor{red}{\textbf{27.81}} / \textcolor{red}{\textbf{0.7439}}  &  \textcolor{red}{\textbf{26.95}} / \textcolor{red}{\textbf{0.8105}} & \textcolor{red}{\textbf{31.50}} / \textcolor{red}{\textbf{0.9192}} \\
+	\bottomrule[1pt]
+  \end{tabular}
+
+\end{table*}
