@@ -55,8 +55,8 @@ python -v "OmniSR_X4_DF2K" -s 994 -t tester_Matlab --test_dataset_name "Urban100
 ![performance](./doc/imgs/vis.png)
 
 ## Results
-
 ![performance](https://user-images.githubusercontent.com/18433587/227410356-6b69906b-416d-4d07-8127-41b08ab79c7a.PNG)
+[result.tex](https://github.com/Francis0625/Omni-SR/blob/main/result.tex) is the corresponding tex code for result comparison.
 
 ## Related Projects
 
