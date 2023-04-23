@@ -5,7 +5,7 @@
 # Created Date: Tuesday April 28th 2020
 # Author: Chen Xuanhong
 # Email: chenxuanhongzju@outlook.com
-# Last Modified:  Thursday, 20th April 2023 2:14:48 am
+# Last Modified:  Sunday, 23rd April 2023 2:49:10 pm
 # Modified By: Chen Xuanhong
 # Copyright (c) 2020 Shanghai Jiao Tong University
 #############################################################
@@ -252,9 +252,6 @@ def main():
         file1       = os.path.join(env_config["train_config_path"], config.train_yaml)
         tgtfile1    = os.path.join(sys_state["project_scripts"], config.train_yaml)
         shutil.copyfile(file1,tgtfile1)
-
-
-        from ops.emb_resblock_modify import ResBlock
 
         # TODO replace below lines, here to save the critical scripts
 

@@ -5,7 +5,7 @@
 # Created Date: Saturday July 3rd 2021
 # Author: Chen Xuanhong
 # Email: chenxuanhongzju@outlook.com
-# Last Modified:  Thursday, 20th April 2023 2:49:05 am
+# Last Modified:  Sunday, 23rd April 2023 2:56:31 pm
 # Modified By: Chen Xuanhong
 # Copyright (c) 2021 Shanghai Jiao Tong University
 #############################################################
@@ -16,7 +16,6 @@ import  argparse
 from    torch.backends import cudnn
 from    utilities.json_config import readConfig
 from    utilities.reporter import Reporter
-from    utilities.sshupload import fileUploaderClass
 import  warnings
 
 warnings.filterwarnings('ignore')
@@ -45,23 +44,6 @@ def getParameters():
 
     parser.add_argument('--test_dataset_name', type=str, default='Urban100', 
                 choices=['DIV2K', 'B100', 'Urban100', 'Set5', 'Set14', "Manga109"])
-
-    # # logs (does not to be changed in most time)
-    # parser.add_argument('--dataloader_workers', type=int, default=6)
-    # parser.add_argument('--use_tensorboard', type=str2bool, default='True',
-    #                         choices=['True', 'False'], help='enable the tensorboard')
-    # parser.add_argument('--log_epoch', type=int, default=100)
-    # parser.add_argument('--sample_epoch', type=int, default=100)
-    
-    # # template (onece editing finished, it should be deleted)
-    # parser.add_argument('--str_parameter', type=str, default="default", help='str parameter')
-    # parser.add_argument('--str_parameter_choices', type=str,
-    #               default="default", choices=['choice1', 'choice2','choice3'], help='str parameter with choices list')
-    # parser.add_argument('--int_parameter', type=int, default=0, help='int parameter')
-    # parser.add_argument('--float_parameter', type=float, default=0.0, help='float parameter')
-    # parser.add_argument('--bool_parameter', type=str2bool, default='True', choices=['True', 'False'], help='bool parameter')
-    # parser.add_argument('--list_str_parameter', type=str, nargs='+', default=["element1","element2"], help='str list parameter')
-    # parser.add_argument('--list_int_parameter', type=int, nargs='+', default=[0,1], help='int list parameter')
     return parser.parse_args()
 
 ignoreKey = [
@@ -75,7 +57,8 @@ ignoreKey = [
         "reporter_path",
         "use_specified_data",
         "specified_data_paths",
-        "dataset_path","cuda", 
+        "dataset_path",
+        "cuda", 
         "test_script_name",
         "test_dataloader",
         "test_dataset_path",
@@ -157,16 +140,6 @@ def main():
     
     sys_state["test_samples_path"]    = os.path.join(env_config["test_log_root"], 
                                         sys_state["version"] , "samples")
-    # if not config.use_my_test_date:
-    #     print("Use public benchmark...")
-    #     data_key = config.test_dataset_name.lower()
-    #     sys_state["test_dataset_path"] = env_config["test_dataset_paths"][data_key]
-    #     if config.test_dataset_name.lower() == "set5" or config.test_dataset_name.lower() =="set14":
-    #         sys_state["test_dataloader"] = "setx"
-    #     else:
-    #         sys_state["test_dataloader"] = config.test_dataset_name.lower()
-            
-    # sys_state["test_dataset_name"] = config.test_dataset_name    
 
     if not os.path.exists(sys_state["test_samples_path"]):
         os.makedirs(sys_state["test_samples_path"])
@@ -175,54 +148,6 @@ def main():
     createDirs(sys_state)
     config_json = os.path.join(sys_state["project_root"], env_config["config_json_name"])
     
-    #fetch checkpoints, model_config.json and scripts from remote machine
-    if sys_state["node_ip"]!="localhost":
-        machine_config = env_config["machine_config"]
-        machine_config = readConfig(machine_config)
-        nodeinf = None
-        for item in machine_config:
-            if item["ip"] == sys_state["node_ip"]:
-                nodeinf = item
-                break
-        if not nodeinf:
-            raise Exception(print("Configuration of node %s is unavaliable"%sys_state["node_ip"]))
-        sys_state["remote_machine"] = nodeinf
-
-        if "localdisk" in sys_state["node_ip"]:
-            import shutil
-            print("Employ localhost logs!")
-            remotebase  = os.path.join(nodeinf['path'],"train_logs",sys_state["version"]).replace('\\','/')
-            print("ready to copy the config.json...")
-            remoteFile  = os.path.join(remotebase, env_config["config_json_name"]).replace('\\','/')
-            localFile   = config_json
-            shutil.copyfile(remoteFile,localFile)
-            remoteDir   = os.path.join(remotebase, "scripts").replace('\\','/')
-            localDir    = os.path.join(sys_state["project_scripts"])
-            shutil.copytree(remoteDir,localDir,dirs_exist_ok=True)
-            print("Copy the scripts successful!")
-        else:
-            print("ready to fetch related files from server: %s ......"%nodeinf["ip"])
-            uploader    = fileUploaderClass(nodeinf["ip"],nodeinf["user"],nodeinf["passwd"])
-
-            remotebase  = os.path.join(nodeinf['path'],"train_logs",sys_state["version"]).replace('\\','/')
-            
-            # Get the config.json
-            print("ready to get the config.json...")
-            remoteFile  = os.path.join(remotebase, env_config["config_json_name"]).replace('\\','/')
-            localFile   = config_json
-            
-            ssh_state   = uploader.sshScpGet(remoteFile, localFile)
-            if not ssh_state:
-                raise Exception(print("Get file %s failed! config.json does not exist!"%remoteFile))
-            print("success get the config.json from server %s"%nodeinf['ip'])
-
-            # Get scripts
-            remoteDir   = os.path.join(remotebase, "scripts").replace('\\','/')
-            localDir    = os.path.join(sys_state["project_scripts"])
-            ssh_state   = uploader.sshScpGetDir(remoteDir, localDir)
-            if not ssh_state:
-                raise Exception(print("Get file %s failed! Program exists!"%remoteFile))
-            print("Get the scripts successful!")
     # Read model_config.json
     json_obj    = readConfig(config_json)
     for item in json_obj.items():
@@ -232,39 +157,13 @@ def main():
             sys_state[item[0]] = item[1]
     
     # Get checkpoints
-    if sys_state["node_ip"]!="localhost":
-        if "localdisk" in sys_state["node_ip"]:
-            print("Employ localhost logs!")
-            sys_state["project_checkpoints"] = os.path.join(nodeinf['path'],"train_logs",sys_state["version"], "checkpoints").replace('\\','/')
-        else:
-        
-            ckpt_name = "epoch%d_%s.pth"%(sys_state["checkpoint_epoch"],
-                                        sys_state["checkpoint_names"]["generator_name"])
-            localFile   = os.path.join(sys_state["project_checkpoints"],ckpt_name)
-            if not os.path.exists(localFile):
-                
-                remoteFile  = os.path.join(remotebase, "checkpoints", ckpt_name).replace('\\','/')
-                ssh_state = uploader.sshScpGet(remoteFile, localFile, True)
-                if not ssh_state:
-                    raise Exception(print("Get file %s failed! Checkpoint file does not exist!"%remoteFile))
-                print("Get the checkpoint %s successfully!"%(ckpt_name))
-            else:
-                print("%s exists!"%(ckpt_name))
 
     data_key = config.test_dataset_name.lower()
     sys_state["test_dataset_path"] = env_config["test_dataset_paths"][data_key]
     sys_state["test_dataset_names"] = config.test_dataset_name
-    # if config.test_dataset_name.lower() == "set5" or config.test_dataset_name.lower() =="set14":
-    #     sys_state["test_dataloader"] = "setx"
-    # else:
-    #     sys_state["test_dataloader"] = config.test_dataset_name.lower()
     
     # TODO get the checkpoint file path
     sys_state["ckp_name"]   = {}
-    # for data_key in sys_state["checkpoint_names"].keys():
-    #     sys_state["ckp_name"][data_key] = os.path.join(sys_state["project_checkpoints"],
-    #                                 "%d_%s.pth"%(sys_state["checkpoint_epoch"],
-    #                                     sys_state["checkpoint_names"][data_key]))
 
     # Get the test configurations
     sys_state["com_base"]   = "train_logs.%s.scripts."%sys_state["version"]
