@@ -5,7 +5,7 @@
 # Created Date: Saturday April 4th 2020
 # Author: Chen Xuanhong
 # Email: chenxuanhongzju@outlook.com
-# Last Modified:  Thursday, 20th April 2023 9:31:06 am
+# Last Modified:  Sunday, 23rd April 2023 3:10:56 pm
 # Modified By: Chen Xuanhong
 # Copyright (c) 2020 Shanghai Jiao Tong University
 #############################################################
@@ -153,9 +153,7 @@ class DIV2K_Flickr_Dataset(data.Dataset):
         indeices = np.random.randint(0,len(self.dataset),size=self.d_e*len(self.dataset))
         self.pathes= indeices.tolist()
         print("Finish to read the dataset!")
-        import sys
-        mem_ocu = sys.getsizeof(self.dataset) / 1024.0 / 1024.0 / 1024.0
-        print("Dataset Memory occupy: %.2f GB"%mem_ocu)
+ 
 
     def __getitem__(self, index):
         """Return one hr image and its corresponding lr image."""

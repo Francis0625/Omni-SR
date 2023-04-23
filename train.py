@@ -5,7 +5,7 @@
 # Created Date: Tuesday April 28th 2020
 # Author: Chen Xuanhong
 # Email: chenxuanhongzju@outlook.com
-# Last Modified:  Sunday, 23rd April 2023 2:49:10 pm
+# Last Modified:  Sunday, 23rd April 2023 3:23:20 pm
 # Modified By: Chen Xuanhong
 # Copyright (c) 2020 Shanghai Jiao Tong University
 #############################################################
@@ -32,9 +32,7 @@ def getParameters():
     parser = argparse.ArgumentParser()
     # general settings
     parser.add_argument('-v', '--version', type=str, default='OmniSR',
-                                            help="version name for train, test, finetune")
-    # parser.add_argument('-t', '--tag', type=str, default='arcface_rec',
-    #                                         help="tag for current experiment")
+                                            help="version name for train, finetune")
 
     parser.add_argument('-p', '--phase', type=str, default="train",
                                             choices=['train', 'finetune','debug'],
@@ -48,30 +46,11 @@ def getParameters():
     parser.add_argument('--experiment_description', type=str,
                                 default="traing OmniSR")
 
-    parser.add_argument('--train_yaml', type=str, default="train_OmniSR_X2_DF2K.yaml")
-    parser.add_argument('--gamma', type=float, default=0.01)
+    parser.add_argument('--train_yaml', type=str, default="train_OmniSR_X4_DIV2K.yaml")
     # system logger
     parser.add_argument('--logger', type=str,
                   default="tensorboard", choices=['tensorboard', 'wandb','none'], help='system logger')
-    
-    parser.add_argument("--local_rank", type=int, default=0)
 
-    # # logs (does not to be changed in most time)
-    # parser.add_argument('--dataloader_workers', type=int, default=6)
-    # parser.add_argument('--use_tensorboard', type=str2bool, default='True',
-    #                         choices=['True', 'False'], help='enable the tensorboard')
-    # parser.add_argument('--log_step', type=int, default=100)
-    # parser.add_argument('--sample_step', type=int, default=100)
-    
-    # # template (onece editing finished, it should be deleted)
-    # parser.add_argument('--str_parameter', type=str, default="default", help='str parameter')
-    # parser.add_argument('--str_parameter_choices', type=str,
-    #               default="default", choices=['choice1', 'choice2','choice3'], help='str parameter with choices list')
-    # parser.add_argument('--int_parameter', type=int, default=0, help='int parameter')
-    # parser.add_argument('--float_parameter', type=float, default=0.0, help='float parameter')
-    # parser.add_argument('--bool_parameter', type=str2bool, default='True', choices=['True', 'False'], help='bool parameter')
-    # parser.add_argument('--list_str_parameter', type=str, nargs='+', default=["element1","element2"], help='str list parameter')
-    # parser.add_argument('--list_int_parameter', type=int, nargs='+', default=[0,1], help='int list parameter')
     return parser.parse_args()
 
 ignoreKey = [
@@ -83,9 +62,8 @@ ignoreKey = [
         "project_samples",
         "project_scripts",
         "reporter_path",
-        "use_specified_data",
-        "specified_data_paths",
-        "dataset_path","cuda", 
+        "dataset_path",
+        "cuda", 
         "test_script_name",
         "test_dataloader",
         "test_dataset_path",
@@ -195,58 +173,6 @@ def main():
                                     "trainer_%s.py"%sys_state["train_script_name"])
         shutil.copyfile(file1,tgtfile1)
 
-        # save the model file
-        file1       = os.path.join('./ops',
-                                    "LargeKernel_Block_omni.py")
-        tgtfile1    = os.path.join(sys_state["project_scripts"],
-                                    "LargeKernel_Block_omni.py")
-        shutil.copyfile(file1,tgtfile1)
-
-        # save the model file
-        file1       = os.path.join('./ops',
-                                    "LargeKernel_Block_omni_2.py")
-        tgtfile1    = os.path.join(sys_state["project_scripts"],
-                                    "LargeKernel_Block_omni_2.py")
-        shutil.copyfile(file1,tgtfile1)
-
-        
-        # save the model file
-        file1       = os.path.join('./ops',
-                                    "LargeKernel_Block_omni_sr.py")
-        tgtfile1    = os.path.join(sys_state["project_scripts"],
-                                    "LargeKernel_Block_omni_sr.py")
-        shutil.copyfile(file1,tgtfile1)
-
-        # save the model file
-        file1       = os.path.join('./ops',
-                                    "LargeKernel_Block_omni_sr_window.py")
-        tgtfile1    = os.path.join(sys_state["project_scripts"],
-                                    "LargeKernel_Block_omni_sr_window.py")
-        shutil.copyfile(file1,tgtfile1)
-
-        # save the model file
-        file1       = os.path.join('./ops',
-                                    "Kernel_Group_soup.py")
-        tgtfile1    = os.path.join(sys_state["project_scripts"],
-                                    "Kernel_Group_soup.py")
-        shutil.copyfile(file1,tgtfile1)
-
-        # save the model file
-        file1       = os.path.join('./components',
-                                    "KernelFormer_omni.py")
-        tgtfile1    = os.path.join(sys_state["project_scripts"],
-                                    "KernelFormer_omni.py")
-        shutil.copyfile(file1,tgtfile1)
-
-
-
-        # save the model file
-        file1       = os.path.join('./components',
-                                    "KernelFormer_soup.py")
-        tgtfile1    = os.path.join(sys_state["project_scripts"],
-                                    "KernelFormer_soup.py")
-        shutil.copyfile(file1,tgtfile1)
-
 
         # save the yaml file
         file1       = os.path.join(env_config["train_config_path"], config.train_yaml)
@@ -254,45 +180,6 @@ def main():
         shutil.copyfile(file1,tgtfile1)
 
         # TODO replace below lines, here to save the critical scripts
-
-    #=====================Finetune Phase=====================#
-    # elif config.phase == "finetune":
-    #     sys_state["log_root_path"]  = env_config["train_log_root"]
-    #     sys_state["project_root"]   = os.path.join(sys_state["log_root_path"], sys_state["version"])
-
-    #     config_json                 = os.path.join(sys_state["project_root"], env_config["config_json_name"])
-    #     train_config                = readConfig(config_json)
-    #     for item in train_config.items():
-    #         if item[0] in ignoreKey:
-    #             pass
-    #         else:
-    #             sys_state[item[0]]  = item[1]
-        
-    #     createDirs(sys_state)
-    #     reporter = Reporter(sys_state["reporter_path"])
-    #     sys_state["com_base"]       = "train_logs.%s.scripts."%sys_state["version"]
-
-    #=====================ImageNet Finetune Phase=====================#
-    elif config.phase == "finetune":
-        # read training configurations from yaml file
-        ymal_config = getConfigYaml(os.path.join(env_config["train_config_path"], config.train_yaml))
-        for item in ymal_config.items():
-            sys_state[item[0]] = item[1]
-        
-        sys_state["log_root_path"]  = env_config["train_log_root"]
-        sys_state["imagenet_root"]  = os.path.join(sys_state["log_root_path"], sys_state["imagenet_version"])
-        sys_state["imagenet_checkpoints"] = os.path.join(sys_state["imagenet_root"], "checkpoints")
-
-        
-        createDirs(sys_state)
-        reporter = Reporter(sys_state["reporter_path"])
-
-        # create reporter file
-        reporter = Reporter(sys_state["reporter_path"])
-
-        # save the config json
-        config_json = os.path.join(sys_state["project_root"], env_config["config_json_name"])
-        writeConfig(config_json, sys_state)
 
     
     # get the dataset path

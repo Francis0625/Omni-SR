@@ -5,7 +5,7 @@
 # Created Date: Tuesday April 28th 2022
 # Author: Chen Xuanhong
 # Email: chenxuanhongzju@outlook.com
-# Last Modified:  Thursday, 20th April 2023 9:31:36 am
+# Last Modified:  Sunday, 23rd April 2023 3:06:36 pm
 # Modified By: Chen Xuanhong
 # Copyright (c) 2020 Shanghai Jiao Tong University
 #############################################################
@@ -27,10 +27,6 @@ class OmniSR(nn.Module):
 
         residual_layer  = []
         self.res_num    = res_num
-
-        # for _ in range(2):
-        #     temp_res = RLFB_ori(num_feat,bias)
-        #     residual_layer.append(temp_res)
 
         for _ in range(res_num):
             temp_res = OSAG(channel_num=num_feat,**kwargs)
@@ -69,13 +65,6 @@ class OmniSR(nn.Module):
         # origin
         out     = torch.add(self.output(out),residual)
         out     = self.up(out)
-
-        # new
-        # out = self.output(out)
-        # out = self.up(out)
-        
-        # residual = self.tail(residual)
-        # out = torch.add(out, residual)
         
         out = out[:, :, :H*self.up_scale, :W*self.up_scale]
         return  out

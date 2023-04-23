@@ -35,7 +35,7 @@ cd OmniSR
 | DIV2K $\times 4$  | OmniSR_X4_DIV2K.zip | [baidu cloud](https://pan.baidu.com/s/1KwO_shGLeais9Jne_cCINQ) (passwd: sjtu) , [Google driver](https://drive.google.com/file/d/1VoPUw0SRnCPAU8_R5Ue15bn2gwSBr97g/view?usp=sharing)|
 | DF2K $\times 4$  | OmniSR_X4_DF2K.zip | [baidu cloud](https://pan.baidu.com/s/1ovxRa4-wOKZLq_nO6hddsg) (passwd: sjtu) , [Google driver](https://drive.google.com/file/d/17rJXJHBYt4Su8cMDMh-NOWMBdE6ki5em/view?usp=sharing)|
 
-- Download benchmark images, and copy them to ```./benchmark/```: [baidu cloud](https://pan.baidu.com/s/1HsMtfjEzj4cztaF2sbnOMg) (passwd: sjtu) , [Google driver](https://drive.google.com/file/d/1w-brbpprWHyT4tzCe_MoB2tqEcSOc5OW/view?usp=sharing)
+- Download benchmark ([baidu cloud](https://pan.baidu.com/s/1HsMtfjEzj4cztaF2sbnOMg) (passwd: sjtu) , [Google driver](https://drive.google.com/file/d/1w-brbpprWHyT4tzCe_MoB2tqEcSOc5OW/view?usp=sharing)), and copy them to ```./benchmark/```. If you want to generate the benchmark by yourself, please refer to the official repository of [RCAN](https://github.com/yulunzhang/RCAN).
  
 ## Evaluate Pretrained Models
 ### Example: evaluate the model trained with DF2K@X4:
@@ -43,11 +43,20 @@ cd OmniSR
 - Step 1, the following cmd will report a performance evaluated with python script, and generated images are placed in ```./SR```
 
 ```
-python -v "OmniSR_X4_DF2K" -s 994 -t tester_Matlab --test_dataset_name "Urban100"
+python test.py -v "OmniSR_X4_DF2K" -s 994 -t tester_Matlab --test_dataset_name "Urban100"
 ```
-- Step2, please execute the ```Evaluate_PSNR_SSIM.m``` script in the root directory to obtain the results reported in the paper. Please modify ```L8: methods = {'OmniSR_X4_DF2K'};``` to match the model name evaluated above.
+- Step2, please execute the ```Evaluate_PSNR_SSIM.m``` script in the root directory to obtain the results reported in the paper. Please modify ```Line 8 (Evaluate_PSNR_SSIM.m): methods = {'OmniSR_X4_DF2K'};``` and ```Line 10 (Evaluate_PSNR_SSIM.m): dataset = {'Urban100'};``` to match the model/dataset name evaluated above.
 
 ## Training
+
+- Step1, please download training dataset from [DIV2K](https://data.vision.ee.ethz.ch/cvl/DIV2K/) (```Train Data Track 1 bicubic downscaling x? (LR images)``` and ```Train Data (HR images)```), then set the dataset root path in ```./env/env.json: Line 8: "DIV2K":"TO YOUR DIV2K ROOT PATH"```
+
+- Step2, please download benchmark ([baidu cloud](https://pan.baidu.com/s/1HsMtfjEzj4cztaF2sbnOMg) (passwd: sjtu) , [Google driver](https://drive.google.com/file/d/1w-brbpprWHyT4tzCe_MoB2tqEcSOc5OW/view?usp=sharing)), and copy them to ```./benchmark/```. If you want to generate the benchmark by yourself, please refer to the official repository of [RCAN](https://github.com/yulunzhang/RCAN).
+
+- Step3, training with DIV2K $\times 4$ dataset:
+```
+python train.py -v "OmniSR_X4_DIV2K" -p train --train_yaml "train_OmniSR_X4_DIV2K.yaml"
+```
 
 
 ## Visualization

@@ -5,7 +5,7 @@
 # Created Date: Saturday April 4th 2020
 # Author: Chen Xuanhong
 # Email: chenxuanhongzju@outlook.com
-# Last Modified:  Thursday, 20th April 2023 9:27:09 am
+# Last Modified:  Sunday, 23rd April 2023 3:10:38 pm
 # Modified By: Chen Xuanhong
 # Copyright (c) 2020 Shanghai Jiao Tong University
 #############################################################
@@ -97,7 +97,7 @@ class DIV2K_Flickr_Dataset(data.Dataset):
         print("processing DIV2K images...")
         temp_path   = os.path.join(div2khr_path,'*.%s'%(self.subffix))
         images      = glob.glob(temp_path)
-        for item in images[0:10]:
+        for item in images:
         # for item in images:
             file_name   = os.path.basename(item)
             file_name   = os.path.splitext(file_name)[0]

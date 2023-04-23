@@ -7,7 +7,6 @@ feature_num: 64
 # feature_num: 72
 module_params:
   upsampling: 2
-  kernel_size: 17
   res_num: 5
   block_num: 1
   bias: True

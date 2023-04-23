@@ -5,7 +5,7 @@
 # Created Date: Tuesday April 28th 2022
 # Author: Chen Xuanhong
 # Email: chenxuanhongzju@outlook.com
-# Last Modified:  Thursday, 20th April 2023 9:28:34 am
+# Last Modified:  Sunday, 23rd April 2023 3:07:42 pm
 # Modified By: Chen Xuanhong
 # Copyright (c) 2020 Shanghai Jiao Tong University
 #############################################################
@@ -408,7 +408,7 @@ class Channel_Attention_grid(nn.Module):
         return out
 
 class OSA_Block(nn.Module):
-    def __init__(self, channel_num=64, bias = True, kernel_size = 19, ffn_bias=True, window_size=8, with_pe=False, dropout=0.0):
+    def __init__(self, channel_num=64, bias = True, ffn_bias=True, window_size=8, with_pe=False, dropout=0.0):
         super(OSA_Block, self).__init__()
 
         w = window_size
