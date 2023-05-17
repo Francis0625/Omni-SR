@@ -69,6 +69,9 @@ python train.py -v "OmniSR_X4_DIV2K" -p train --train_yaml "train_OmniSR_X4_DIV2
 
 ## Related Projects
 
+## License
+This project is released under the Apache 2.0 license. 
+
 ## To cite our paper
 If this work helps your research, please cite the following paper:
 
